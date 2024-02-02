@@ -17,4 +17,12 @@ app.use(expresss.static("public"))  //storing files in folder in local server
 app.use(cookieParser())  //performing crud from server to client 
 
 
+
+//routes
+import userRouter from './routes/user.routes.js'
+
+app.use("/api/v1/users",userRouter)
+
+
+//http://localhost:5000/api/v1/users/register
 export {app}
