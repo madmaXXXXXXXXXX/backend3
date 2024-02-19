@@ -64,17 +64,16 @@ userSchema.methods.isPassowrdCorrect = async function (password) {
   return await bcrypt.compare(password, this.password);
 };
 
-userSchema.methods.generateAcceessToken = async function () {
+userSchema.methods.generateAcceessToken = async function(){
   return jwt.sign(
     {
       _id: this._id,
-      email: this.email,
-      username: this.username,
-      fullname: this.fullname,
     },
-    process.env.ACCESS_TOKEN_SECRET,
+  //  process.env.ACCESS_TOKEN_SECRET,
+  "madmax",
     {
-      expiresIn: process.env.ACCESS_TOKEN_EXPIRY,
+      expiresIn: "1d"
+      // process.env.ACCESS_TOKEN_EXPIRY,
     }
   );
 };
@@ -83,9 +82,11 @@ userSchema.methods.generateRefreshToken = async function () {
     {
       _id: this._id,
     },
-    process.env.REFRESH_TOKEN_SECRET,
+    // process.env.REFRESH_TOKEN_SECRET,
+    "madmax",
     {
-      expiresIn: process.env.REFRESH_TOKEN_EXPIRY,
+      expiresIn: "10d"
+      // process.env.REFRESH_TOKEN_EXPIRY,
     }
   );
 };
